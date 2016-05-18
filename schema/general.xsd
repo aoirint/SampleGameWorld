@@ -1,0 +1,14 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/world">
+
+  <xsd:element name="general">
+    <xsd:complexType>
+      <xsd:all>
+        <xsd:element name="name" type="xsd:string" />
+        <xsd:element name="version" type="xsd:string" />
+        <xsd:element name="url" type="xsd:anyURI" />
+        <xsd:element name="logo" type="xsd:string" />
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

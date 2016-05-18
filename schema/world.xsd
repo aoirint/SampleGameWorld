@@ -1,5 +1,6 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/world">
   
+  <xsd:include schemaLocation="general.xsd" />
   <xsd:include schemaLocation="flag.xsd" />
   <xsd:include schemaLocation="script.xsd" />
   <xsd:include schemaLocation="texture.xsd" />
@@ -12,6 +13,7 @@
   <xsd:element name="world">
     <xsd:complexType>
       <xsd:all>
+        <xsd:element ref="general" />
         <xsd:element ref="objects" />
         <xsd:element ref="flags" />
         <xsd:element ref="resources" />
