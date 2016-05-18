@@ -1,0 +1,96 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/world">
+  
+  <xsd:include schemaLocation="flag.xsd" />
+  <xsd:include schemaLocation="script.xsd" />
+  <xsd:include schemaLocation="texture.xsd" />
+  <xsd:include schemaLocation="textureMap.xsd" />
+  <xsd:include schemaLocation="tip.xsd" />
+  <xsd:include schemaLocation="map.xsd" />
+  <xsd:include schemaLocation="event.xsd" />
+  
+  <xsd:element name="world">
+    <xsd:complexType>
+      <xsd:all>
+        <xsd:element ref="objects" />
+        <xsd:element ref="flags"  />
+        <xsd:element ref="resources" />
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="objects">
+    <xsd:complexType>
+      <xsd:all>
+          <xsd:element name="tips">
+          <xsd:complexType>
+            <xsd:all>
+              <xsd:element ref="tip" maxOccurs="unbounded" />
+            </xsd:all>
+          </xsd:complexType>
+        </xsd:element>
+
+          <xsd:element name="maps">
+          <xsd:complexType>
+            <xsd:all>
+              <xsd:element ref="map" maxOccurs="unbounded" />
+            </xsd:all>
+          </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="items" type="items" />
+          <xsd:complexType>
+            <xsd:all>
+              <xsd:element ref="item" maxOccurs="unbounded" />
+            </xsd:all>
+          </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="events" />
+          <xsd:complexType>
+            <xsd:all>
+              <xsd:element ref="event" maxOccurs="unbounded" />
+            </xsd:all>
+          </xsd:complexType>
+        </xsd:element>
+
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="flags">
+    <xsd:all>
+      <xsd:element ref="flag" maxOccurs="unbounded" />
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="resources">
+    <xsd:all>
+      <xsd:element name="textures">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element ref="texture" maxOccurs="unbounded" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="textureMaps">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element ref="textureMap" maxOccurs="unbounded" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="scripts">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element ref="script" maxOccurs="unbounded" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      
+    </xsd:all>
+  </xsd:complexType>
+
+  
+</xsd:schema>

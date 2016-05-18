@@ -1,0 +1,13 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/world">
+
+  <xsd:element name="event">
+    <xsd:all>
+      <xsd:element name="name" type="xsd:string" />
+      <xsd:element ref="texture" />
+      <xsd:element ref="location" />
+    </xsd:all>
+    
+    <xsd:attribute name="id" type="xsd:string" />
+  </xsd:element>
+
+</xsd:schema>

@@ -1,0 +1,49 @@
+<world>
+  <general>
+    <name>Sample World</name>
+    <version>0.0.1-SNAPSHOT</version>
+    <url>http://example.com/sampleGameWorld</url>
+    <logo>logo.png</logo>
+  </general>
+  
+  <objects>
+    <tips>
+      <tip id="grass">
+        <name>草地</name>
+        <texture ref="tips/grass"/>
+      </tip>
+    </tips>
+    
+    <maps>
+      <map id="townA">
+        <name>町A</name>
+        <textureMap ref="town" />
+      </map>
+    </maps>
+    
+    <events>
+      <event id="player">
+        <name>プレイヤー</name>
+        <texture ref="events/player" />
+        <location>
+          
+        </location>
+      </events>
+    </events>
+  </objects>
+  
+  <flags>
+  
+  </flags>
+  
+  <resources>
+    <textures>
+      <texture id="tips/grass" />
+    </textures>
+    
+    <textureMaps>
+      <textureMap id="town">
+    </textureMaps>
+  </resources>
+  
+</world>

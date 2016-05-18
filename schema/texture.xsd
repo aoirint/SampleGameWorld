@@ -1,0 +1,11 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/world">
+
+  <xsd:element name="texture">
+    <xsd:all>
+    
+    </xsd:all>
+    
+    <xsd:attribute name="id" type="xsd:string" />
+  </xsd:element>
+
+</xsd:schema>
