@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Editor</title>
+
+<script src="jquery-2.2.3.min.js"></script>
+<script src="xml.js"></script>
+
+<script>
+  $(function()
+  {
+    $('#btnOutput').on('click', function()
+    {
+      var xml = WEdit.asXML($('#mainForm')[0]);
+      var xser = new XMLSerializer();
+      
+      $('#output').val(xser.serializeToString(xml));
+    });
+    
+    $('#file').on('change', function() 
+    {
+      var fBlob = $('#file')[0].files[0];
+      if (! fBlob) return;
+      
+      var fr = new FileReader();
+      fr.onload = function(e)
+      {
+        WEdit.fromXMLText($('#mainForm')[0], fr.result);
+      };
+      
+      fr.readAsText(fBlob);
+    });
+  });
+  
+</script>
+
+<form id="mainForm">
+  <p><input id="btnOutput" type="button" value="出力" data-ignore> <input id="btnReverse" type="button" value="反転" data-ignore> <input id="file" type="file" data-ignore>
+  <p><label for="output">結果</label> <textarea id="output" cols="160" rows="10" data-ignore></textarea>
+  
+  <fieldset data-group="general">
+    <legend>General</legend>
+    <p><label>名前</label> <input data-name="name" value="Sample World">
+    <p><label>バージョン</label> <input data-name="version" value="1.0.0">
+    <p><label>URL</label> <input data-name="url" value="http://example.com/">
+    <p><label>ロゴ</label> <input data-name="logo" value="logo.png">
+  </fieldset>
+
+  <fieldset data-group="events">
+    <legend>Events</legend>
+
+    <fieldset data-group="event">
+      <legend>Event</legend>
+      <p><label>ID</label> <input data-attr="id" value="unknown">
+      <p><label>ロゴ</label> <input data-name="logo" value="logo.png">
+    </fieldset>
+    
+    <fieldset data-group="event">
+      <legend>Event</legend>
+    </fieldset>
+  </fieldset>
+
+</form>
