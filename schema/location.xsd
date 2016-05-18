@@ -1,0 +1,11 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.com/world">
+
+  <xsd:element name="location">
+    <xsd:complexType>
+      <xsd:attribute name="map" type="xsd:string" />
+      <xsd:attribute name="x" type="xsd:int" />
+      <xsd:attribute name="y" type="xsd:int" />
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

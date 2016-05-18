@@ -8,9 +8,9 @@
   
   <objects>
     <tips>
-      <tip id="grass">
-        <name>草地</name>
-        <texture ref="tips/grass"/>
+      <tip id="plain">
+        <name>平地</name>
+        <texture ref="tips/plain" />
       </tip>
     </tips>
     
@@ -21,29 +21,36 @@
       </map>
     </maps>
     
+    <items>
+      <item id="pear">
+        <name>ナシ</name>
+        <texture ref="items/pear" />
+      </item>
+    </items>
+    
     <events>
       <event id="player">
         <name>プレイヤー</name>
         <texture ref="events/player" />
-        <location>
-          
-        </location>
-      </events>
+        <location map="townA" x="0" y="0" />
+      </event>
     </events>
   </objects>
   
-  <flags>
-  
-  </flags>
+  <flags />
   
   <resources>
-    <textures>
-      <texture id="tips/grass" />
+    <textures><!-- TODO: 省略するように -->
+      <texture id="tips/plain" />
+      <texture id="items/pear" />
+      <texture id="events/player" />
     </textures>
     
     <textureMaps>
-      <textureMap id="town">
+      <textureMap id="town" />
     </textureMaps>
+    
+    <scripts />
   </resources>
   
 </world>
