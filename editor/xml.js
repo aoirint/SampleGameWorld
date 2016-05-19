@@ -53,13 +53,41 @@ WEdit.fromXML = function(container, xml)
 {
   var root = xml.documentElement;
   
-  WEdit.fillFromXML(container, xml, root);
+  // WEdit.fillFromXML(container, xml, root);
+  WEdit.fillFromXMLGroup(container, root, 'general');
 }
 
-WEdit.fillFromXML = function(container, rootElm)
+/*
+WEdit.fillFromXML = function(docElm, xml, xmlElm)
 {
-  WEdit.fillFromXMLGroup(container, rootElm, 'general');
+  $(docElm).children().each(function()
+  {
+      var nElm = xmlElm;
+      
+      if (this.dataset.group)
+      {
+        var docThis = this;
+        var grp = docThis.dataset.group;
+        
+        nElm = $(xmlElm).children(grp)[0];
+      }
+      
+      if (nElm) WEdit.fillFromXML(this, xml, nElm);
+    });
+
+  if (docElm.dataset.name == xmlElm.tagName)
+  {
+    $(docElm).text(xmlElm.textContent);
+  }
+  
+  if (docElm.dataset.attr && xmlElm.hasAttribute(docElm.dataset.attr))
+  {
+      $(docElm).val(xmlElm.getAttribute(docElm.dataset.attr));
+  }
+  
+  
 }
+*/
 
 WEdit.fillFromXMLGroup = function(container, xmlContainer, groupName)
 {
