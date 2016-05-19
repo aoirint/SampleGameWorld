@@ -4,6 +4,7 @@
 
 <script src="jquery-2.2.3.min.js"></script>
 <script src="xml.js"></script>
+<script src="tabise.js"></script>
 
 <script>
   $(function()
@@ -32,6 +33,19 @@
   });
   
 </script>
+
+
+<div style="width: 500px;" data-tab-container>
+  <div data-tab="TAB1">
+    Hello, I'm 1st.
+  </div>
+  <div data-tab="TAB2">
+    Hello, I'm 2nd.
+  </div>
+  <div data-tab="TAB3">
+    Hello, I'm 3rd.
+  </div>
+</div>
 
 <form id="mainForm">
   <p><input id="btnOutput" type="button" value="出力" data-ignore> <input id="btnReverse" type="button" value="反転" data-ignore> <input id="file" type="file" data-ignore>
@@ -64,3 +78,5 @@
   </fieldset>
 
 </form>
+
+
