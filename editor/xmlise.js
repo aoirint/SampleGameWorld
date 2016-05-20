@@ -1,3 +1,25 @@
+/*
+
+  XMLise - Semi-auto xml exporter -
+
+-----
+
+The MIT License (MIT)
+Copyright (c) 2016 Kanomiya
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-----
+
+  ### Dependencies
+  - JQuery
+
+  
+*/
 
 var XMLise = {};
 
@@ -12,6 +34,7 @@ $(function()
 {
 XMLise.css = String.raw`
 /* XMLise Auto Insertion Style */
+
 
 [data-xml-templete]
 {
@@ -29,30 +52,6 @@ XMLise.asXML = function(container, ns, rootName)
   XMLise.fillXML(container, xml, root);
   
   return xml;
-};
-
-XMLise.fillXML = function(domElm, xml, xmlElm)
-{
-  $(domElm).children('[data-xml-name]').each(function()
-  {
-    var nElm = xml.createElement(this.dataset.xmlName);
-    $(nElm).text($(this).val());
-    $(xmlElm).append(nElm);
-    
-    $(this).children(':not([data-xml-templete])').each(function()
-    {
-      XMLise.fillXML(this, xml, nElm);
-    });
-  });
-  
-  $(domElm).children(':not([data-xml-name]):not([data-xml-templete])').each(function()
-  {
-    $(this).children(':not([data-xml-templete])').each(function()
-    {
-      XMLise.fillXML(this, xml, xmlElm);
-    });
-  });
-  
 };
 
 
@@ -103,10 +102,37 @@ XMLise.parseRemoveButton = function()
       if (selectedTab) $(selectedTab).remove();
     });
     
-  } else
-  {
-    console.log('Invalid operation: Not Found Tabise');
   }
+  
+};
+
+
+
+
+
+
+
+XMLise.fillXML = function(domElm, xml, xmlElm)
+{
+  
+  if ($(domElm).attr('data-xml-name'))
+  {
+    var nElm = xml.createElement(domElm.dataset.xmlName);
+    if (domElm.tagName == 'INPUT') $(nElm).text($(domElm).val());
+    $(xmlElm).append(nElm);
+    
+    xmlElm = nElm;
+  }
+  
+  if ($(domElm).attr('data-xml-attr'))
+  {
+    $(xmlElm).attr(domElm.dataset.xmlAttr, $(domElm).val());
+  }
+  
+  $(domElm).children(':not([data-xml-templete])').each(function()
+  {
+    XMLise.fillXML(this, xml, xmlElm);
+  });
   
 };
 
