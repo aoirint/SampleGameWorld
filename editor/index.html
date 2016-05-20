@@ -3,7 +3,7 @@
 <title>Editor</title>
 
 <script src="jquery-2.2.3.min.js"></script>
-<script src="xml.js"></script>
+<script src="xmlise.js"></script>
 <script src="tabise.js"></script>
 
 <script>
@@ -11,7 +11,7 @@
   {
     $('#btnOutput').on('click', function()
     {
-      var xml = WEdit.asXML($('#mainForm')[0]);
+      var xml = XMLise.asXML($('#mainForm')[0], 'http://example.com/world', 'world');
       var xser = new XMLSerializer();
       
       $('#output').val(xser.serializeToString(xml));
@@ -25,7 +25,7 @@
       var fr = new FileReader();
       fr.onload = function(e)
       {
-        WEdit.fromXMLText($('#mainForm')[0], fr.result);
+        XMLise.fromXMLText($('#mainForm')[0], fr.result);
       };
       
       fr.readAsText(fBlob);
@@ -35,48 +35,43 @@
 </script>
 
 
-<div style="width: 500px;" data-tab-container>
-  <div data-tab="TAB1">
-    Hello, I'm 1st.
-  </div>
-  <div data-tab="TAB2">
-    Hello, I'm 2nd.
-  </div>
-  <div data-tab="TAB3">
-    Hello, I'm 3rd.
-  </div>
-</div>
-
-<form id="mainForm">
-  <p><input id="btnOutput" type="button" value="出力" data-ignore> <input id="btnReverse" type="button" value="反転" data-ignore> <input id="file" type="file" data-ignore>
-  <p><label for="output">結果</label> <textarea id="output" cols="160" rows="10" data-ignore></textarea>
+<form id="mainForm" data-tab-container>
+  <p><input id="btnOutput" type="button" value="出力"> <input id="btnReverse" type="button" value="反転"> <input id="file" type="file">
+  <p><label for="output">結果</label> <textarea id="output" cols="160" rows="10"></textarea>
   
-  <fieldset data-group="general">
+  <fieldset data-tab="General" data-xml-name="general">
     <legend>General</legend>
-    <p><label>名前</label> <input data-name="name" value="Example World">
-    <p><label>バージョン</label> <input data-name="version" value="1.0.0">
-    <p><label>URL</label> <input data-name="url" value="http://example.com/">
-    <p><label>ロゴ</label> <input data-name="logo" value="logo.png">
+    <p><label>名前</label> <input data-xml-name="name" value="Example World">
+    <p><label>バージョン</label> <input data-xml-name="version" value="1.0.0">
+    <p><label>URL</label> <input data-xml-name="url" value="http://example.com/">
+    <p><label>ロゴ</label> <input data-xml-name="logo" value="logo.png">
   </fieldset>
 
-  <fieldset data-group="events">
-    <legend>Events</legend>
-
-    <fieldset data-group="event">
-      <legend>Event</legend>
-      <p><label>ID</label> <input data-attr="id" value="exmEvent">
-      <p><label>テクスチャ</label> <input data-name="texture" value="events/exmEvent.png">
-      
-      <fieldset data-group="location">
-      <legend>Location</legend>
-      <p><label>マップ</label> <input data-name="map" value="exmTown">
-      <p><label>X</label> <input data-name="x" value="0">
-      <p><label>Y</label> <input data-name="y" value="0">
-      </fieldset>
-    </fieldset>
+  <div data-tab="Events">
+    <input type="button" value="新規" data-xml-append-instance-of="tmplEvent" data-xml-append-instance-for="events">
+    <input type="button" value="削除" data-xml-remove-selected-tab-of="events">
     
-  </fieldset>
+    <div data-tab-container="vertical" data-xml-name="events">
+    
+      <div data-xml-templete="tmplEvent" data-tab-ignore>
+        <fieldset data-tab="event" data-xml-name="event">
+          <legend>Event</legend>
+          <p><label>ID</label> <input data-attr="id" value="exmEvent">
+          <p><label>テクスチャ</label> <input data-name="texture" value="events/exmEvent.png">
+          
+          <fieldset data-xml-name="location">
+          <legend>Location</legend>
+          <p><label>マップ</label> <input data-name="map" value="exmTown">
+          <p><label>X</label> <input data-name="x" value="0">
+          <p><label>Y</label> <input data-name="y" value="0">
+          </fieldset>
+        </fieldset>
+      </div>
+    </div>
+  </div>
 
 </form>
+
+
 
 
